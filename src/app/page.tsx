@@ -96,7 +96,7 @@ export default function Home() {
                   Enter a city name above to get current weather conditions and a 5-day forecast.
                 </p>
                 <div className="text-sm text-gray-500">
-                  Try searching for cities like "London", "New York", or "Tokyo"
+                  Try searching for cities like &quot;London&quot;, &quot;New York&quot;, or &quot;Tokyo&quot;
                 </div>
               </div>
             </div>
