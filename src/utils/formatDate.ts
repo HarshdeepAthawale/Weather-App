@@ -20,5 +20,5 @@ export const formatTemperature = (temp: number, unit: 'C' | 'F' = 'C'): string =
 };
 
 export const getWeatherIconUrl = (iconCode: string): string => {
-  return `https:${iconCode}`;
+  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 };

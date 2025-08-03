@@ -8,16 +8,17 @@ interface WeatherCardProps {
 }
 
 export default function WeatherCard({ weatherData, unit }: WeatherCardProps) {
-  const { location, current } = weatherData;
-  const temperature = unit === 'C' ? current.temp_c : current.temp_f;
-  const feelsLike = unit === 'C' ? current.feelslike_c : current.feelslike_f;
+  const { name, sys, main, weather, wind } = weatherData;
+  const temperature = main.temp;
+  const feelsLike = main.feels_like;
+  const weatherCondition = weather[0];
 
   return (
     <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl shadow-lg p-6 text-white mb-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-2xl font-bold">{location.name}</h2>
-          <p className="text-blue-100">{location.country}</p>
+          <h2 className="text-2xl font-bold">{name}</h2>
+          <p className="text-blue-100">{sys.country}</p>
         </div>
         <div className="text-right">
           <div className="text-4xl font-bold">{formatTemperature(temperature, unit)}</div>
@@ -28,25 +29,25 @@ export default function WeatherCard({ weatherData, unit }: WeatherCardProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Image
-            src={getWeatherIconUrl(current.condition.icon)}
-            alt={current.condition.text}
+            src={getWeatherIconUrl(weatherCondition.icon)}
+            alt={weatherCondition.description}
             width={64}
             height={64}
             className="w-16 h-16"
           />
           <div>
-            <p className="text-lg font-medium">{current.condition.text}</p>
+            <p className="text-lg font-medium">{weatherCondition.description}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="text-center">
             <p className="text-blue-100">Humidity</p>
-            <p className="font-semibold">{current.humidity}%</p>
+            <p className="font-semibold">{main.humidity}%</p>
           </div>
           <div className="text-center">
             <p className="text-blue-100">Wind</p>
-            <p className="font-semibold">{current.wind_kph} km/h</p>
+            <p className="font-semibold">{wind.speed} m/s</p>
           </div>
         </div>
       </div>
